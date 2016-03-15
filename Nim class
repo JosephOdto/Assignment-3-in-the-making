@@ -1,0 +1,31 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Nim {
+	private Heap heapA; //first heap
+	private Heap heapB; //second heap
+	private Heap heapC; //third heap
+	private Random randomNumbers; //Random number generator
+	private Scanner input; //scanner for all inputs
+
+	public Nim(){ //Default constructor
+		
+	}
+
+	public boolean playerMove(){ //One move for the player, did the player select a valid move?
+		
+	}
+	
+	public void gameMove(){ //One move for the computer
+		
+	}
+	
+	public void printHeaps(){ //Print all the heaps
+		
+	}
+
+	public boolean gameDone(){ //is the game done?
+		
+	}
+	
+}
