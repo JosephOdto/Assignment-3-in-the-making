@@ -1,0 +1,26 @@
+
+public class Heap {
+private int heapSize; // the number of objects in ONE heap
+
+	public Heap(int heapsize){ //Initial constructor with the starting heap size
+		this.heapSize=heapSize;	
+	}
+
+	public boolean remove (){ //Number of objects to remove from the heap
+		
+	}
+	
+	public boolean isEmpty(){ //is the heap empty
+		
+		
+	}
+	
+	public void displaySize(){ //print the current number of objects in this heap
+			
+	}
+	
+	public int getSize(){ // return the number of objects in this heap
+	
+	}
+	
+}
