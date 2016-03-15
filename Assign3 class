@@ -1,0 +1,11 @@
+
+public class Assign3 {
+	public static void main(String[] args) {
+		System.out.println("Welcome to the NIM cup");
+		System.out.println("We play by the normal play rules");
+		
+		
+		
+	}
+
+}
