@@ -8,7 +8,6 @@ public class Heap {
 	}
 
 	public boolean remove (int heapToRemove){ //Number of objects to remove from the heap
-	
 		this.heapSize =  this.heapSize - heapToRemove;
 		return true;
 	}
@@ -30,4 +29,3 @@ public class Heap {
 	}
 
 }
-
