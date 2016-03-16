@@ -10,8 +10,11 @@ public class Assign3 {
 		nim1.printHeaps();
 		nim1.playerMove();
 		nim1.printHeaps();
+		nim1.gameMove();
+		nim1.printHeaps();
 		
 	}
 
 }
+
 
