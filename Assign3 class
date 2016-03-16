@@ -1,11 +1,17 @@
 
+
 public class Assign3 {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the NIM cup");
 		System.out.println("We play by the normal play rules");
 		
+		Nim nim1 = new Nim();
 		
+		nim1.printHeaps();
+		nim1.playerMove();
+		nim1.printHeaps();
 		
 	}
 
 }
+
