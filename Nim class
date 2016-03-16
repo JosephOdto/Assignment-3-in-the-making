@@ -5,27 +5,94 @@ public class Nim {
 	private Heap heapA; //first heap
 	private Heap heapB; //second heap
 	private Heap heapC; //third heap
-	private Random randomNumbers; //Random number generator
+	private Random randomNumbers = new Random();; //Random number generator
 	private Scanner input; //scanner for all inputs
 
 	public Nim(){ //Default constructor
-		
+		heapA = null;
+		heapB = null;
+		heapC = null;
 	}
 
 	public boolean playerMove(){ //One move for the player, did the player select a valid move?
-		
+
+		int heapToRemove=0;
+		char x;
+		input = new Scanner(System.in);
+
+		System.out.print("\n\nSelect a heap:");
+		x = input.next().charAt(0);
+
+		while(x!=0)
+			if(x=='a' || x=='b' || x=='c'){
+				System.out.print("How many do you want to remove?");
+				switch(x){
+
+				case 'a':
+					heapToRemove = input.nextInt();	
+					heapA.remove(heapToRemove);
+					break;
+
+				case 'b':
+					heapToRemove = input.nextInt();	
+					heapB.remove(heapToRemove);	
+					break;
+
+				case 'c':
+					heapToRemove = input.nextInt();	
+					heapC.remove(heapToRemove);
+					break;
+
+				}	
+			}
+			else{
+				System.out.println("Please enter a valid heap");	
+			}
+		return true;
 	}
-	
+
+
 	public void gameMove(){ //One move for the computer
-		
+
+		int computerRandomHeap = randomNumbers.nextInt(3)+1;
+		switch(computerRandomHeap){
+
+		case 1:
+			int computerRandomNumber = randomNumbers.nextInt(10)+1;
+			heapA.remove(computerRandomNumber);
+			break;
+
+		case 2:
+			computerRandomNumber = randomNumbers.nextInt(10)+1;
+			heapB.remove(computerRandomNumber);
+			break;
+
+		case 3:
+			computerRandomNumber = randomNumbers.nextInt(10)+1;
+			heapC.remove(computerRandomNumber);
+			break;
+		}		
 	}
-	
+
+
 	public void printHeaps(){ //Print all the heaps
-		
+		heapA = new Heap(10);
+		heapB = new Heap(10);
+		heapC = new Heap(10);
+
+		System.out.print("\tA");
+		System.out.print("\tB");
+		System.out.println("\tC");
+		heapA.displaySize();
+		heapB.displaySize();
+		heapC.displaySize();
 	}
 
 	public boolean gameDone(){ //is the game done?
-		
+		if((heapA.getSize()==0) || (heapA.getSize()==0) || (heapA.getSize()==0) )
+			return true;
+		else 
+			return false;
 	}
-	
+
 }
