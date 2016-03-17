@@ -1,20 +1,28 @@
 
-
 public class Assign3 {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the NIM cup");
 		System.out.println("We play by the normal play rules");
-		
+
 		Nim nim1 = new Nim();
-		
-		nim1.printHeaps();
-		nim1.playerMove();
-		nim1.printHeaps();
-		nim1.gameMove();
-		nim1.printHeaps();
-		
+		do{
+			nim1.printHeaps();
+
+			if(nim1.playerMove()==true && nim1.gameDone()==true){
+				System.out.println("Congratulations: You Are The Winner!");
+				break;
+			}
+			nim1.printHeaps();
+			nim1.gameMove();
+			if(nim1.gameDone()==true){
+				System.out.println("Sorry: You Lose");
+				break;
+			}
+		}while(nim1.gameDone()!=true);
+
+
+
 	}
 
-}
 
-
+// fix how to make picking from empty heaps an invalid move
