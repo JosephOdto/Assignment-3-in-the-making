@@ -1,161 +1,33 @@
-import java.util.Random;
-import java.util.Scanner;
 
-public class Nim {
-	private Heap heapA; //first heap
-	private Heap heapB; //second heap
-	private Heap heapC; //third heap
-	private Random randomNumbers = new Random(); //Random number generator
-	private Scanner input; //scanner for all inputs
+public class Heap {
+	private int heapSize; // the number of objects in ONE heap
 
-	public Nim(){ //Default constructor
-		heapA = new Heap(10);
-		heapB = new Heap(10);
-		heapC = new Heap(10);
+
+	public Heap(int heapsize){ //Initial constructor with the starting heap size
+		this.heapSize = heapsize;
 	}
 
-	public boolean playerMove(){ //One move for the player, did the player select a valid move?
-		boolean flagForObjectsToRemove=false;
-		boolean flagForHeapSelected=false;
-		int objectsToRemove=0;
-		char heapSelected;
-		input = new Scanner(System.in);
-
-		do{
-			System.out.print("\nSelect a heap:");
-
-			heapSelected = input.next().charAt(0);	
-			switch(heapSelected){
-			case 'a':
-			case 'A':
-				if(heapA.isEmpty()==true)
-					System.out.println("Heap A is empty");
-				else
-					flagForHeapSelected=true;
-				break;
-
-			case 'b':
-			case 'B':
-				if(heapB.isEmpty()==true)
-					System.out.println("Heap B is empty");
-				else
-					flagForHeapSelected=true;	
-				break;
-
-			case 'c':
-			case 'C':
-				if(heapC.isEmpty()==true)
-					System.out.println("Heap C is empty");
-				else
-					flagForHeapSelected=true;	
-				break;
-
-			default:
-				System.out.println("Invalid Input: Heap " + heapSelected + " does not exist");
-				break;
-			}
-
-		}while(flagForHeapSelected!=true);	
-
-		if(heapSelected=='a' || heapSelected=='A'){
-			do{
-				System.out.print("How many do you want to remove from heap A? ");
-				objectsToRemove = input.nextInt();	
-				if(objectsToRemove<= heapA.getSize() && objectsToRemove >0 ){
-					flagForObjectsToRemove=heapA.remove(objectsToRemove);
-					break;
-				}
-				else
-					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap A is not a possible move\n");
-			}while(flagForObjectsToRemove!=true);	
-		}
-
-		else if(heapSelected=='b' || heapSelected=='B'){
-			do{
-				System.out.print("How many do you want to remove from heap B? ");
-				objectsToRemove = input.nextInt();	
-				if(objectsToRemove<= heapB.getSize() && objectsToRemove >0 ){
-					flagForObjectsToRemove=heapB.remove(objectsToRemove);
-					break;
-				}
-				else
-					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap B is not a possible move\n");
-			}while(flagForObjectsToRemove!= true);
-		}
-
-		else if(heapSelected=='c' || heapSelected=='C'){
-			do{
-				System.out.print("How many do you want to remove from heap C? ");
-				objectsToRemove = input.nextInt();	
-				if(objectsToRemove<= heapC.getSize() && objectsToRemove >0 ){
-					flagForObjectsToRemove=heapC.remove(objectsToRemove);
-					break;
-				}
-				else
-					System.out.print("Invalid Input: Removing from " + objectsToRemove + " objects from heap C is not a possible move\n"); 
-			}while(flagForObjectsToRemove!=true);
-
+	public boolean remove (int heapToRemove){ //Number of objects to remove from the heap
+		this.heapSize =  this.heapSize - heapToRemove;
+		if(this.heapSize==0){
+			return false;
 		}
 		return true;
 	}
 
-
-	public void gameMove(){ //One move for the computer
-		int computerRandomNumber;
-		boolean flag=false;
-		do{
-			int computerRandomHeap = randomNumbers.nextInt(3)+1; // computer randomly picks heap
-			if(computerRandomHeap==1){
-				if(heapA.isEmpty()!=true){
-					computerRandomNumber = randomNumbers.nextInt(heapA.getSize())+1;
-					heapA.remove(computerRandomNumber);
-					System.out.println("Computer takes " + computerRandomNumber + " from heap A");
-					break;
-				}
-			}
-
-			else if(computerRandomHeap==2){
-
-				if(heapB.isEmpty()!=true){
-					computerRandomNumber = randomNumbers.nextInt(heapB.getSize())+1;
-					heapB.remove(computerRandomNumber);
-					System.out.println("Computer takes " + computerRandomNumber + " from heap B");
-					break;
-				}
-			}	
-
-			else{
-				if(heapC.isEmpty()!=true){
-					computerRandomNumber = randomNumbers.nextInt(heapC.getSize())+1;
-					heapC.remove(computerRandomNumber);
-					System.out.println("Computer takes " + computerRandomNumber + " from heap C");
-					break;
-				}
-			}
-		}while(flag!=true);
-
-	}
-
-
-	public void printHeaps(){ //Print all the heaps
-
-
-		System.out.print("\tA");
-		System.out.print("\tB");
-		System.out.println("\tC");
-		heapA.displaySize();
-		heapB.displaySize();
-		heapC.displaySize();
-		System.out.println("");
-	}
-
-	public boolean gameDone(){ //is the game done?
-		if((heapA.getSize()==0) && (heapB.getSize()==0) && (heapC.getSize()==0) ){
-			System.out.println("\nGame is over");
+	public boolean isEmpty(){ //is the heap empty
+		if(this.heapSize==0)
 			return true;
-		}
-		else 
+		else
 			return false;
+	}
+
+	public void displaySize(){ //print the current number of objects in this heap
+		System.out.printf("\t%d",this.heapSize);
+	}
+
+	public int getSize(){ // return the number of objects in this heap
+		return this.heapSize;
 	}
 
 }
