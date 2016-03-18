@@ -7,11 +7,12 @@ public class Assign3 {
 		Nim nim1 = new Nim();
 		do{
 			nim1.printHeaps();
-
-			if(nim1.playerMove()==true && nim1.gameDone()==true){
+			nim1.playerMove(); 
+			if(nim1.gameDone()==true){
 				System.out.println("Congratulations: You Are The Winner!");
 				break;
 			}
+			
 			nim1.printHeaps();
 			nim1.gameMove();
 			if(nim1.gameDone()==true){
@@ -25,4 +26,5 @@ public class Assign3 {
 	}
 }
 
-// fix how to make picking from empty heaps an invalid move
+
+// fix how to make picking from empty heaps an invalid move *fixed
