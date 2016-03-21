@@ -1,13 +1,18 @@
-
+// 	Joseph Odtohan 
+//	Section - 300 
+//	Instructor - Howard Rosenblum
 public class Assign3 {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the NIM cup");
 		System.out.println("We play by the normal play rules");
-		
+
 		Nim nim1 = new Nim();
 		do{ // continuously loops until the game is over
-			nim1.printHeaps();
-			nim1.playerMove(); 
+
+			do{ // loops until player move is true
+				nim1.printHeaps();
+			}while(nim1.playerMove()!=true);
+
 			if(nim1.gameDone()==true){
 				System.out.println("Congratulations: You Are The Winner!");
 				break;
@@ -21,8 +26,9 @@ public class Assign3 {
 		}while(nim1.gameDone()!=true);
 
 
-		
+
 	}
 }
+
 
 
