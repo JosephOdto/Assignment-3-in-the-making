@@ -1,3 +1,6 @@
+// 	Joseph Odtohan 
+//	Section - 300 
+//	Instructor - Howard Rosenblum
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,47 +18,43 @@ public class Nim {
 	}
 
 	public boolean playerMove(){ //One move for the player, did the player select a valid move?
-		boolean flagForObjectsToRemove=false;
-		boolean flagForHeapSelected=false;
+		boolean flagForObjectsToRemove=true;
 		int objectsToRemove=0;
 		char heapSelected;
 		input = new Scanner(System.in);
 
-		do{ /*  this do while loop is to input the valid heap and identifies which one is empty*/
-			System.out.print("\nSelect a heap:");
+		System.out.print("\nSelect a heap:");
 
-			heapSelected = input.next().charAt(0);	
-			switch(heapSelected){
-			case 'a':
-			case 'A':
-				if(heapA.isEmpty()==true)
-					System.out.println("Heap A is empty, pick another");
-				else
-					flagForHeapSelected=true;
-				break;
-
-			case 'b':
-			case 'B':
-				if(heapB.isEmpty()==true)
-					System.out.println("Heap B is empty, pick another");
-				else
-					flagForHeapSelected=true;	
-				break;
-
-			case 'c':
-			case 'C':
-				if(heapC.isEmpty()==true)
-					System.out.println("Heap C is empty, pick another");
-				else
-					flagForHeapSelected=true;	
-				break;
-
-			default:
-				System.out.println("Invalid Input: Heap " + heapSelected + " does not exist");
-				break;
+		heapSelected = input.next().charAt(0);	
+		switch(heapSelected){
+		case 'a':
+		case 'A':
+			if(heapA.isEmpty()==true){
+				System.out.println("Heap A is empty, pick another");
+				return false;
 			}
-
-		}while(flagForHeapSelected!=true);	
+			else
+				break;
+		case 'b':
+		case 'B':
+			if(heapB.isEmpty()==true){
+				System.out.println("Heap B is empty, pick another");
+				return false;
+			}
+			else
+				break;
+		case 'c':
+		case 'C':
+			if(heapC.isEmpty()==true){
+				System.out.println("Heap C is empty, pick another");
+				return false;
+			}
+			else
+				break;
+		default:
+			System.out.println("Invalid Input: Heap " + heapSelected + " does not exist");
+			return false;
+		}
 
 		if(heapSelected=='a' || heapSelected=='A'){ /* this is to input objects to remove from heap A*/
 			do{
@@ -63,10 +62,11 @@ public class Nim {
 				objectsToRemove = input.nextInt();	
 				if(objectsToRemove<= heapA.getSize() && objectsToRemove >0 ){
 					flagForObjectsToRemove=heapA.remove(objectsToRemove);
-					break;
 				}
-				else
-					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap A is not a possible move\n");
+				else{
+					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap A is not a possible move");
+					return false;
+				}
 			}while(flagForObjectsToRemove!=true);	
 		}
 
@@ -76,10 +76,11 @@ public class Nim {
 				objectsToRemove = input.nextInt();	
 				if(objectsToRemove<= heapB.getSize() && objectsToRemove >0 ){
 					flagForObjectsToRemove=heapB.remove(objectsToRemove);
-					break;
 				}
-				else
-					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap B is not a possible move\n");
+				else{
+					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap B is not a possible move");
+					return false;
+				}
 			}while(flagForObjectsToRemove!= true);
 		}
 
@@ -89,20 +90,21 @@ public class Nim {
 				objectsToRemove = input.nextInt();	
 				if(objectsToRemove<= heapC.getSize() && objectsToRemove >0 ){
 					flagForObjectsToRemove=heapC.remove(objectsToRemove);
-					break;
 				}
-				else
-					System.out.print("Invalid Input: Removing from " + objectsToRemove + " objects from heap C is not a possible move\n"); 
+				else{
+					System.out.println("Invalid Input: Removing from " + objectsToRemove + " objects from heap C is not a possible move");
+					return false;
+				}
 			}while(flagForObjectsToRemove!=true);
 
 		}
 		return true;
 	}
 
-
 	public void gameMove(){ //One move for the computer
 		int computerRandomNumber;
-		boolean flag=false;
+		boolean flag=false; // used to keep loop going until correct number is picked 
+
 		do{
 			int computerRandomHeap = randomNumbers.nextInt(3)+1; // computer randomly picks heap from 3 choices
 			if(computerRandomHeap==1){ // random number 1 is heapA - computer then picks random number based on current heap A size
@@ -113,7 +115,6 @@ public class Nim {
 					break;
 				}
 			}
-
 			else if(computerRandomHeap==2){ // random number 2 is heapB- computer then picks random number based on current heap B size
 
 				if(heapB.isEmpty()!=true){
@@ -139,7 +140,6 @@ public class Nim {
 
 	public void printHeaps(){ //Print all the heaps
 
-
 		System.out.print("\tA");
 		System.out.print("\tB");
 		System.out.println("\tC");
@@ -157,5 +157,4 @@ public class Nim {
 		else 
 			return false;
 	}
-
 }
