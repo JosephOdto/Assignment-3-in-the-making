@@ -20,12 +20,20 @@ public class Nim {
 	public boolean playerMove(){ //One move for the player, did the player select a valid move?
 		boolean flagForObjectsToRemove=true;
 		int objectsToRemove=0;
+		String heapSelectedInString;
 		char heapSelected;
 		input = new Scanner(System.in);
 
 		System.out.print("\nSelect a heap:");
 
-		heapSelected = input.next().charAt(0);	
+			heapSelectedInString = input.next();
+			if(heapSelectedInString.length()>1 || heapSelectedInString.equals("")){
+				System.out.println("Invalid Input: " + heapSelectedInString + " is an invalid heap");
+				return false;
+			}
+
+		heapSelected = 	heapSelectedInString.charAt(0);
+
 		switch(heapSelected){
 		case 'a':
 		case 'A':
