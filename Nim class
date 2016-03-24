@@ -26,7 +26,7 @@ public class Nim {
 
 		System.out.print("\nSelect a heap:");
 
-			heapSelectedInString = input.next();
+			heapSelectedInString = input.next();  // Identifies that string is a single character and has no spaces for another character
 			if(heapSelectedInString.length()>1 || heapSelectedInString.equals("")){
 				System.out.println("Invalid Input: " + heapSelectedInString + " is an invalid heap");
 				return false;
