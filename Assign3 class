@@ -13,6 +13,7 @@ public class Assign3 {
 				nim1.printHeaps();
 			}while(nim1.playerMove()!=true);
 			
+			
 			if(nim1.gameDone()==true){
 				System.out.println("Congrats: you win");
 				break;
