@@ -46,16 +46,18 @@ public class Nim {
 				if(objectsToRemove<= heapA.getSize() && objectsToRemove >0)
 					while(heapA.remove(objectsToRemove)!=true);	
 				else{
-					if((objectsToRemove==1 || heapA.getSize()==1))
+					if((objectsToRemove==1 || heapA.getSize()==1)){ // if heap is 1 and remove should be only 1
 						System.out.println("You can only pick 1 object from this heap");
-					else{
-					System.out.println("Pick another number between 1 and " + heapA.getSize());
-					return false;
+						return false;
+					}
+					else{											// if heap is more than 1 and remove should be within boundary
+						System.out.println("Pick another number between 1 and " + heapA.getSize());
+						return false;
 					}
 				}
 			}	
 			break;
-			
+
 		case 'b':
 		case 'B':
 			if(heapB.isEmpty()==true){
@@ -68,16 +70,18 @@ public class Nim {
 				if(objectsToRemove<= heapB.getSize() && objectsToRemove >0 )
 					while(heapB.remove(objectsToRemove)!=true);
 				else{
-					if((objectsToRemove==1 || heapB.getSize()==1))
+					if((objectsToRemove==1 || heapB.getSize()==1)){ // if heap is 1 and remove should be only 1
 						System.out.println("You can only pick 1 object from this heap");
-					else{
+						return false;
+					}
+					else{											// if heap is more than 1 and remove should be within boundary
 						System.out.println("Pick another number between 1 and " + heapB.getSize());
-					return false;
+						return false;
 					}
 				}
 			}
 			break;
-			
+
 		case 'c':
 		case 'C':
 			if(heapC.isEmpty()==true){
@@ -85,21 +89,23 @@ public class Nim {
 				return false;
 			}
 			else{
-				System.out.print("How many do you want to remove from heap B? ");
+				System.out.print("How many do you want to remove from heap C? ");
 				objectsToRemove = input.nextInt();	
 				if(objectsToRemove<= heapC.getSize() && objectsToRemove >0 )
 					while(heapC.remove(objectsToRemove)!=true);
 				else{
-					if((objectsToRemove==1 || heapC.getSize()==1))
+					if((objectsToRemove==1 || heapC.getSize()==1)){ // if heap is 1 and remove should be only 1
 						System.out.println("You can only pick 1 object from this heap");
-					else{
+						return false;
+					}
+					else{											// if heap is more than 1 and remove should be within boundary
 						System.out.println("Pick another number between 1 and " + heapC.getSize());
-					return false;
+						return false;
 					}
 				}
 			}
-				break;
-				
+			break;
+
 		default:
 			System.out.println("Invalid Input: Heap " + heapSelected + " does not exist");
 			return false;
@@ -158,7 +164,6 @@ public class Nim {
 
 	public boolean gameDone(){ //is the game done?
 		if((heapA.getSize()==0) && (heapB.getSize()==0) && (heapC.getSize()==0) ){
-			System.out.println("\nGame is over");
 			return true;
 		}
 		else 
